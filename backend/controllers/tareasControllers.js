@@ -36,17 +36,15 @@ const updateTareas = asyncHandler( async (req, res) => {
         res.status(401)
         throw new Error ('Acceso no autorizado')
     }else{
-        const tareaUpdated = await Tarea.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const tareaUpdated = await Tarea.findByIdAndUpdate(req.params.id, req.body.texto)
     res.status(200).json(tareaUpdated)
     }
-
-    
-
 })
 
 const deleteTareas = asyncHandler( async (req, res) => {
 
     const tarea = await Tarea.findById(req.params.id)
+    
     if (!tarea){
         res.status(400)
         throw new Error('esa tarea no existe')
@@ -58,8 +56,8 @@ const deleteTareas = asyncHandler( async (req, res) => {
         throw new Error ('Acceso no autorizado')
     }else{
 
-        tarea.deleteOne()
-        //const tareaDeleted = await tarea.findByIdAndDelete(req.params.id)
+        //tarea.deleteOne()
+        const tareaDeleted = await tarea.findByIdAndDelete(req.params.id)
         res.status(200).json({id: req.params.id})
     }
     

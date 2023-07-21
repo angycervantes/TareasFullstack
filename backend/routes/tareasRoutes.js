@@ -5,10 +5,10 @@ const { protect } = require('../middleware/authMiddleware')
 
 
 router.route('/').get(getTareas).post(protect, createTareas)
-// router.get('/', protect, getTareas)
-// router.post('/', protect, createTareas)
+//router.get('/', protect, getTareas)
+//router.post('/', protect, createTareas)
 
-router.route('/:id').delete(deleteTareas).put(protect, updateTareas)
+router.route('/:id').delete(protect, deleteTareas).put(protect, updateTareas)
 // router.put('/:id', protect, updateTareas)
 // router.delete('/:id', protect, deleteTareas)
 
